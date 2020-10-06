@@ -1,8 +1,9 @@
 ### Example 1 - Write a program, topN, that given an arbitrarily large file and a number, N, containing individual numbers on each line (e.g. 200Gb file), will output the largest N numbers, highest first. Tell me about the run time/space complexity of it, and whether you think there's room for improvement in your approach.
 
 In pseudo code, using a linked list for the results, it would be something like:
-    define N = max list size
 
+    define N = max list size
+    
     function orderedInsert (ordered list, current value){
            if ordered list size  = 0 or current value >= head node value
                  add node at the first position with current value
