@@ -1,6 +1,6 @@
-### Example 1 
+## Example 1 
 
-## A program, topN, that given an arbitrarily large file and a number, N, containing individual numbers on each line (e.g. 200Gb file), will output the largest N numbers, highest first.
+### A program, topN, that given an arbitrarily large file and a number, N, containing individual numbers on each line (e.g. 200Gb file), will output the largest N numbers, highest first.
 
 In pseudo code, using a linked list for the results, it would be something like:
 
