@@ -18,89 +18,25 @@
 #
 
 from sys import argv
-txt = open(argv[1])
-topN = int(argv[2])
+from heapq import nlargest, nsmallest
 
-class Node:
-    def __init__(self,initdata):
-        self.data = initdata
-        self.next = None
-        self.previous = None
+def get_top_n(filename, n):
+    with open(filename) as f:
+        numbers = map(int, f)
+        return nlargest(n, numbers)
 
-    def getData(self):
-        return self.data
+def get_bottom_n(filename, n):
+    with open(filename) as f:
+        numbers = map(int, f)
+        return nsmallest(n, numbers)
 
-    def getNext(self):
-        return self.next
+if __name__ == "__main__":
 
-    def getPrevious(self):
-        return self.previous
-
-    def setData(self,newdata):
-        self.data = newdata
-
-    def setNext(self,newnext):
-        self.next = newnext
-
-    def setPrevious(self,newprevious):
-        self.previous = newprevious
-
-
-class OrderedList:
-    def __init__(self):
-        self.head = None
-        self.tail = None
-	self.count = 0
-
-    def add(self,item):
-        current = self.head
-        previous = None
-        stop = False
-        while current != None and not stop:
-            if current.getData() <= item:
-                stop = True
-            else:
-                previous = current
-                current = current.getNext()
-
-        temp = Node(item)
-        if previous == None:
-            temp.setNext(self.head)
-            self.head = temp
-	    if current != None:
-	        current.setPrevious(temp)
-	    else:
-		self.tail = temp
-	    self.count = self.count + 1
-        elif current != None:
-            temp.setNext(current)
-            temp.setPrevious(previous)
-	    current.setPrevious(temp)
-            previous.setNext(temp)
-	    self.count = self.count + 1
-        elif self.count < topN:
-	    temp.setNext(None)
-            temp.setPrevious(previous)
-            previous.setNext(temp)
-	    self.tail = temp
-	    self.count = self.count + 1
-
-        if self.count > topN:
-            self.tail = self.tail.getPrevious()
-	    self.tail.setNext(None)
-	    self.count = self.count - 1
-
-    def isEmpty(self):
-        return self.head == None
-
-    def printL(self):
-        current = self.head
-        while current != None:
-	    print current.getData()
-            current = current.getNext()
-
-mylist = OrderedList()
-for line in txt:
-   mylist.add(int(line))
-
-mylist.printL()
+    topN = int(argv[2])
+    top_n_list = get_top_n(argv[1], topN)
+    bottom_n_list = get_bottom_n(argv[1], topN)
+    for num in top_n_list:
+        print(num)
+    print("---")
+    for num in reversed(bottom_n_list):
+        print(num)

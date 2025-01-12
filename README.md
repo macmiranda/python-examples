@@ -1,8 +1,4 @@
 # macmiranda/python-examples
 
-README.md exists
 
-README.md exists
-
-
-README.md exists
+Just a collection of python code examples.
